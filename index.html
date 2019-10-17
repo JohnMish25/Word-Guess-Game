@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>NBA Hangman</title>
 </head>
 <body>
 
@@ -12,43 +12,89 @@
 
 <h2> Press any key to start </h2>
 
-<h3> Win Total: </h3> <span id= "score"></span>
+<h3> Win Total: <span id= "score"></span> </h3> 
+<p> Word: <span id="placeHolder"></span> </p>
+
+<p id="userchoice-text"></p>
 
     <script type="text/javascript"> 
 
     //==================All Variables ===================
     //Answers Array
-    var answers = ["Shaq", "Michael Jordan", "Allen Iverson", "Kobe", "Penny Hardaway", "Scottie Pippen", "Shawn Kemp", "Magic Johnson", "Charles Barkley", "Reggie Miller", "Jason Kidd"];
-
+    var answers = ["shaq", "jordan", "iverson", "kobe", "penny", "pippen", "kemp", "barkley", "kidd"];
+    //Score total
+    var score = 0;
+    //display user guess
+    var userChoiceText = document.getElementById("userchoice-text");
+    //remaining guesss 
+    var remainingLetters = answers.length;
     //Computer picks a random NBA player from array
     var computerPick = answers[Math.floor(Math.random() * answers.length)];
+    var letterGuessed = [];
 
     //Show how many letters are in word
     var answerArray = [];
-    for (v=i =0; i < answer.length; i++) {
+    //create a variable for placeholder in html to  _ _ _ _ 
+    var placeHolder = document.getElementById ("placeHolder")
+    for (var i = 0 ; i < computerPick.length; i++) {
         answerArray[i] = "_";
     }
-    var remainingLetters = answer.length;
-    var score = 0;
+
+    var scoreText = document.getElementById ("score")
+    scoreText.textContent = (score)
+
+    
+
+    console.log(answerArray);
+    placeHolder.textContent = answerArray.join(" ")
+    
+    
 
     //=================All Functions======================
 
     function updateScore() {
-      document.querySelector("#score").innerHTML = "Score: " + score;
+      document.querySelector("#score").innerHTML = "Score:" + score;
     }
 
 
     //====================Main Process ===================
 
-
+    // Game inititated by user, guesses a letter 
     document.onkeyup = function(event) {        
         var userGuess = event.key;
-        var computerPick= answers
-    }
+        //computer picks a word
+        //"_ _ _ _ _" displayed 
+        //correct letter guess
+        if(computerPick.includes(userGuess)) {
+            for (var j =0; j < computerPick.length; j++) {
+                if (computerPick[j] === userGuess) {
+                    console.log("Found a match!");
+                        answerArray[j] = userGuess;
+                        remainingLetters--; 
+                        placeHolder.textContent = answerArray.join(" ")
+                }
+            // letter fills in to blank word i.e. "S _ _ _"
+                //incorrect letter guess 
+                else  {
+                }
+                //guesses decrease 
 
-    
-    
-    
+                //if all letters have been guessed 
+            };
+        } else {
+            letterGuessed.push(userGuess);
+            console.log(letterGuessed);
+            //displayed letters guessed 
+
+            
+        }
+        // user guess again..? 
+        // if guesses word correctly, displays winner! and picture
+        // game restarts 
+
+
+
+    };
     </script>
 </body>
 </html>
