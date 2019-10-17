@@ -1,100 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NBA Hangman</title>
 </head>
+
 <body>
 
-<h1> Welcome to NBA 90's edition Hangman </h1>
+    <style>
+      
 
-<h2> Press any key to start </h2>
-
-<h3> Win Total: <span id= "score"></span> </h3> 
-<p> Word: <span id="placeHolder"></span> </p>
-
-<p id="userchoice-text"></p>
-
-    <script type="text/javascript"> 
-
-    //==================All Variables ===================
-    //Answers Array
-    var answers = ["shaq", "jordan", "iverson", "kobe", "penny", "pippen", "kemp", "barkley", "kidd"];
-    //Score total
-    var score = 0;
-    //display user guess
-    var userChoiceText = document.getElementById("userchoice-text");
-    //remaining guesss 
-    var remainingLetters = answers.length;
-    //Computer picks a random NBA player from array
-    var computerPick = answers[Math.floor(Math.random() * answers.length)];
-    var letterGuessed = [];
-
-    //Show how many letters are in word
-    var answerArray = [];
-    //create a variable for placeholder in html to  _ _ _ _ 
-    var placeHolder = document.getElementById ("placeHolder")
-    for (var i = 0 ; i < computerPick.length; i++) {
-        answerArray[i] = "_";
-    }
-
-    var scoreText = document.getElementById ("score")
-    scoreText.textContent = (score)
-
-    
-
-    console.log(answerArray);
-    placeHolder.textContent = answerArray.join(" ")
-    
-    
-
-    //=================All Functions======================
-
-    function updateScore() {
-      document.querySelector("#score").innerHTML = "Score:" + score;
-    }
-
-
-    //====================Main Process ===================
-
-    // Game inititated by user, guesses a letter 
-    document.onkeyup = function(event) {        
-        var userGuess = event.key;
-        //computer picks a word
-        //"_ _ _ _ _" displayed 
-        //correct letter guess
-        if(computerPick.includes(userGuess)) {
-            for (var j =0; j < computerPick.length; j++) {
-                if (computerPick[j] === userGuess) {
-                    console.log("Found a match!");
-                        answerArray[j] = userGuess;
-                        remainingLetters--; 
-                        placeHolder.textContent = answerArray.join(" ")
-                }
-            // letter fills in to blank word i.e. "S _ _ _"
-                //incorrect letter guess 
-                else  {
-                }
-                //guesses decrease 
-
-                //if all letters have been guessed 
-            };
-        } else {
-            letterGuessed.push(userGuess);
-            console.log(letterGuessed);
-            //displayed letters guessed 
-
-            
+        /* Header/Logo Title */
+        .header {
+            padding: 5px;
+            text-align: center;
+            background: #1abc9c;
+            color: white;
+            font-size: 30px;
         }
-        // user guess again..? 
-        // if guesses word correctly, displays winner! and picture
-        // game restarts 
+    </style>
 
 
 
-    };
+    <div class="header">
+        <img src="nbajam.jpeg" class="responsive-img, mx-auto col-8" alt="NBA JAM Logo" width="100" height="200">
+        <h1> Welcome to NBA 90's Edition Hangman </h1>
+
+    </div>
+
+<br><br>
+    <div class="jumbotron text-danger bg-dark mx-auto col-6 font-weight-bold"> 
+
+    <h2> Press any key to start </h2> <hr>
+
+    <h3> Win Total: <span id="score"></span> </h3>
+    <h3> Guesses: <span id="guesses"></span> </h3>
+    <p> Word: <span id="placeHolder"></span> </p>
+
+    <p id="userchoice-text"></p>
+
+    <div> 
+
+    <script type="text/javascript">
+
+        //==================All Variables ===================
+        //Answers Array
+        var answers = ["shaq", "jordan", "iverson", "kobe", "penny", "pippen", "kemp", "barkley", "kidd"];
+        //Score total
+        var score = 0;
+        //display user guess
+        var userChoiceText = document.getElementById("userchoice-text");
+        //remaining guesss 
+        var remainingLetters = answers.length;
+        //Computer picks a random NBA player from array
+        var computerPick = answers[Math.floor(Math.random() * answers.length)];
+        var letterGuessed = [];
+        var guesses = 8;
+
+        //Show how many letters are in word
+        var answerArray = [];
+        //create a variable for placeholder in html to  _ _ _ _ 
+        var placeHolder = document.getElementById("placeHolder")
+        for (var i = 0; i < computerPick.length; i++) {
+            answerArray[i] = "_";
+        }
+
+        var scoreText = document.getElementById("score")
+        scoreText.textContent = (score)
+
+
+
+        console.log(answerArray);
+        placeHolder.textContent = answerArray.join(" ")
+
+
+
+        //=================All Functions======================
+
+        function updateScore() {
+            document.querySelector("#score").innerHTML = "Score:" + score;
+        }
+
+
+        //====================Main Process ===================
+
+        // Game inititated by user, guesses a letter 
+        document.onkeyup = function (event) {
+            var userGuess = event.key;
+            //computer picks a word
+            //"_ _ _ _ _" displayed 
+            //correct letter guess
+            if (computerPick.includes(userGuess)) {
+                for (var j = 0; j < computerPick.length; j++) {
+                    if (computerPick[j] === userGuess) {
+                        console.log("Found a match!");
+                        answerArray[j] = userGuess;
+                        remainingLetters--;
+                        placeHolder.textContent = answerArray.join(" ")
+                    }
+                    // letter fills in to blank word i.e. "S _ _ _"
+                    //incorrect letter guess 
+                    else {
+                    }
+                    //guesses decrease 
+
+                    //if all letters have been guessed 
+                };
+            } else {
+                letterGuessed.push(userGuess);
+                console.log(letterGuessed);
+                //displayed letters guessed 
+
+
+            }
+            // user guess again..? 
+            // if guesses word correctly, displays winner! and picture
+            // game restarts 
+
+
+
+        };
     </script>
 </body>
+
 </html>
