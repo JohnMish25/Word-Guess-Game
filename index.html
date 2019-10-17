@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<h1> Welcome to NBA 90's edition Hangman </h1>
+
+<h2> Press any key to start </h2>
+
+<h3> Win Total: </h3> <span id= "score"></span>
+
+    <script type="text/javascript"> 
+
+    //==================All Variables ===================
+    //Answers Array
+    var answers = ["Shaq", "Michael Jordan", "Allen Iverson", "Kobe", "Penny Hardaway", "Scottie Pippen", "Shawn Kemp", "Magic Johnson", "Charles Barkley", "Reggie Miller", "Jason Kidd"];
+
+    //Computer picks a random NBA player from array
+    var computerPick = answers[Math.floor(Math.random() * answers.length)];
+
+    //Show how many letters are in word
+    var answerArray = [];
+    for (v=i =0; i < answer.length; i++) {
+        answerArray[i] = "_";
+    }
+    var remainingLetters = answer.length;
+    var score = 0;
+
+    //=================All Functions======================
+
+    function updateScore() {
+      document.querySelector("#score").innerHTML = "Score: " + score;
+    }
+
+
+    //====================Main Process ===================
+
+
+    document.onkeyup = function(event) {        
+        var userGuess = event.key;
+        var computerPick= answers
+    }
+
+    
+    
+    
+    </script>
+</body>
+</html>
