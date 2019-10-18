@@ -40,7 +40,7 @@
         
         <h3> Word: <span id="placeHolder"></span> </h3>
         <p> Win Total: <span id="wins"></span> </p>
-        <p> Remaining Attempts: <span id="guesses"></span> </p>
+        <p> Remaining Attempts: <span id= lettersGuessed ></span> </p>
         <p Wins: id="wins-text"></p>
         <p id="losses-text"></p>
         <p id="userchoice-text"></p>
@@ -105,14 +105,20 @@
                                 answerArray[j] = userGuess;
                                 remainingLetters--;
                                 placeHolder.textContent = answerArray.join(" ");
-                                wins++;
+                                
                             }
+                            {
+                            wins++;
+                            }
+                            {
+                                winsText.textContent = wins;}
 
                         };
                     } else {
                         letterGuessed.push(userGuess);
                         console.log(letterGuessed);
                         //displayed letters guessed 
+                        lettersText.textContent= letterGuessed;
 
                         lossesText.textContent = "losses: " + losses;
                         console.log
@@ -122,10 +128,7 @@
                     // if guesses word correctly, displays winner! and picture
                     // game restarts 
 
-                    userChoiceText.textContent = "You chose: " + userGuess;
-                    computerChoiceText.textContent = "The computer chose: " + computerGuess;
-                    winsText.textContent = "wins: " + wins;
-                    lossesText.textContent = "losses: " + losses;
+                   
 
 
 
